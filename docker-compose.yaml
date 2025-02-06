@@ -1,0 +1,9 @@
+services:
+  memory-game:
+    build: .
+    container_name: memory-game-container
+    command: npm run dev
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/root/memory-game
