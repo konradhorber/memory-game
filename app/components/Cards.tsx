@@ -97,9 +97,9 @@ function Cards({ currentScore, highScore, setCurrentScore, setHighScore }: GameS
                             width={200}
                             height={200}
                             alt={image.alt_description}
-                            className='rounded-md object-cover aspect-square w-[200px] h-[200px]'
+                            className='rounded-md object-cover w-full aspect-square shadow-md'
                         />
-                        <h2>{image.alt_description}</h2>
+                        <h2 className='text-center mt-2'>{image.alt_description}</h2>
                     </div>
                 ))
             ) : (
