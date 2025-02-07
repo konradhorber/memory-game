@@ -1,5 +1,6 @@
 'use client';
 
+import { count } from 'console';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
@@ -9,6 +10,13 @@ type UnsplashImage = {
         small: string;
     };
     alt_description: string;
+};
+
+type GameScore = {
+    currentScore: number;
+    highScore: number;
+    setCurrentScore: (score: number) => void;
+    setHighScore: (score: number) => void;
 };
 
 function shuffle(array: UnsplashImage[]) {
@@ -27,8 +35,9 @@ function shuffle(array: UnsplashImage[]) {
     }
 }
 
-function Cards() {
+function Cards({ currentScore, highScore, setCurrentScore, setHighScore }: GameScore) {
     const [images, setImages] = useState<UnsplashImage[]>([]);
+    const [imagesClicked, setImagesClicked] = useState<Record<string, number>>({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -40,6 +49,20 @@ function Cards() {
         });
     };
 
+    const selectImage = (key: string) => {
+        handleShuffle();
+        if (!imagesClicked[key]) {
+            imagesClicked[key] = 1;
+            setCurrentScore(currentScore + 1);
+            if (currentScore + 1 > highScore) {
+                setHighScore(currentScore + 1);
+            }
+        } else {
+            setImagesClicked({});
+            setCurrentScore(0);
+        }
+    };
+    
     useEffect(() => {
         async function fetchImages() {
             try {
@@ -66,7 +89,7 @@ function Cards() {
                 displayedImages.map((image) => (
                     <div 
                         key={image.id}
-                        onClick={handleShuffle} 
+                        onClick={() => selectImage(image.id)} 
                         className='flex flex-col items-center p-2'
                     >
                         <Image 
