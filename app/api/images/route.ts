@@ -1,6 +1,18 @@
 import { NextResponse } from 'next/server';
+import { headers } from "next/headers";
+import { rateLimit } from "./routeLimit";
+
 
 export async function GET() {
+  const headerList = await headers();
+  const ip = headerList.get("x-forwarded-for") ?? "unknown";
+  const isRateLimited = rateLimit(ip);
+  if (isRateLimited) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded' },
+      { status: 429 }
+    );
+  }
   try {
     const response = await fetch(
       'https://api.unsplash.com/photos/random?count=16',

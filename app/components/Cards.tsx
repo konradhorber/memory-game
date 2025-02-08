@@ -1,8 +1,8 @@
 'use client';
 
-import { count } from 'console';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+
 
 type UnsplashImage = {
     id: string;
