@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 type UnsplashImage = {
     id: string;
     urls: {
-        small: string;
+        regular: string;
     };
     alt_description: string;
 };
@@ -93,7 +93,7 @@ function Cards({ currentScore, highScore, setCurrentScore, setHighScore }: GameS
                         className='flex flex-col items-center p-2'
                     >
                         <Image 
-                            src={image.urls.small}
+                            src={image.urls.regular}
                             width={200}
                             height={200}
                             alt={image.alt_description}
