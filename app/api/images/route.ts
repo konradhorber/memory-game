@@ -15,7 +15,7 @@ export async function GET() {
   }
   try {
     const response = await fetch(
-      'https://api.unsplash.com/photos/random?count=16',
+      'https://api.unsplash.com/photos/random?count=30',
       {
         headers: {
           'Authorization': `Client-ID ${process.env.UNSPLASH_API_KEY}`

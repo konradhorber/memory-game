@@ -77,10 +77,10 @@ function Cards({ currentScore, highScore, setCurrentScore, setHighScore }: GameS
         fetchImages();
     }, []);
 
-    const displayedImages = images.slice(0, 8);
+    const displayedImages = images.slice(0, 10);
 
     return (
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4'>
             {displayedImages && displayedImages.length > 0 ? (
                 displayedImages.map((image) => (
                     <div 
@@ -90,12 +90,11 @@ function Cards({ currentScore, highScore, setCurrentScore, setHighScore }: GameS
                     >
                         <Image 
                             src={image.urls.regular}
-                            width={200}
-                            height={200}
+                            width={300}
+                            height={300}
                             alt={image.alt_description}
                             className='rounded-md object-cover w-full aspect-square shadow-md'
                         />
-                        <h2 className='text-center mt-2'>{image.alt_description}</h2>
                     </div>
                 ))
             ) : (
