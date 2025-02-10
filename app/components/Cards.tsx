@@ -26,7 +26,7 @@ function shuffle(array: UnsplashImage[]) {
     while (currentIndex != 0) {
   
       // Pick a remaining element...
-      let randomIndex = Math.floor(Math.random() * currentIndex);
+      const randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
   
       // And swap it with the current element.
@@ -38,8 +38,6 @@ function shuffle(array: UnsplashImage[]) {
 function Cards({ currentScore, highScore, setCurrentScore, setHighScore }: GameScore) {
     const [images, setImages] = useState<UnsplashImage[]>([]);
     const [imagesClicked, setImagesClicked] = useState<Record<string, number>>({});
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
     const handleShuffle = () => {
         setImages(prevImages => {
@@ -72,10 +70,8 @@ function Cards({ currentScore, highScore, setCurrentScore, setHighScore }: GameS
                 }
                 const data = await response.json();
                 setImages(data);
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'Error fetching images');
-            } finally {
-                setIsLoading(false);
+            } catch (error) {
+                console.error(error);
             }
         }
         fetchImages();

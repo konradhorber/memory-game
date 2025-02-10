@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div>
       <header className='flex flex-col justify-between items-center p-4'>
-        <h1 className='text-xl font-bold'>Get points by clicking on an image but don't click on any more than once!</h1>
+        <h1 className='text-xl font-bold'>Get points by clicking on an image but don&apos;t click on any more than once!</h1>
         <div className='flex flex-row'>
           <p className='mr-4'>Points: {currentScore}</p>
           <p>High Score: {highScore}</p> 
